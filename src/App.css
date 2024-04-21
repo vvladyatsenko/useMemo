@@ -6,19 +6,20 @@
 }
 
 h1 {
-  color: #333;
+  color: #3a3a3a;
 }
 
 .input-container {
   display: flex;
   margin-bottom: 20px;
+  margin-top: 30px;
 }
 
 .todo-input {
   flex-grow: 1;
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #ccc;
+  border: 2px solid #cecdcd;
   border-radius: 4px;
 }
 
@@ -42,7 +43,7 @@ h1 {
 
 .task-item {
   background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  border: 1px solid #d8d7d7;
   padding: 10px;
   margin-bottom: 5px;
   display: flex;
