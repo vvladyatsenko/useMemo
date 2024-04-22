@@ -1,38 +1,24 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import TodoList from './Components/TodoList';
 import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CirclePicker } from 'react-color';
+import { useIdleTimer } from 'react-idle-timer';
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState('');
   const [headerColor, setHeaderColor] = useState('#000000');
-  const [isIdle, setIsIdle] = useState(false);
 
-  useEffect(() => {
-    let idleTimer = null;
-
-    const resetIdleTimer = () => {
-      clearTimeout(idleTimer);
-      setIsIdle(false);
-      idleTimer = setTimeout(() => {
-        toast.info('Are you still with us?');
-        setIsIdle(true);
-      }, 10000);
-    };
-
-    resetIdleTimer();
-    window.addEventListener('mousemove', resetIdleTimer);
-    window.addEventListener('keypress', resetIdleTimer);
-
-    return () => {
-      clearTimeout(idleTimer);
-      window.removeEventListener('mousemove', resetIdleTimer);
-      window.removeEventListener('keypress', resetIdleTimer);
-    };
+  const handleOnIdle = useCallback(() => {
+    toast.info('Are you still with us?');
   }, []);
+
+  const idleTimer = useIdleTimer({
+    timeout: 5000,
+    onIdle: handleOnIdle,
+  });
 
   const handleChangeColor = (color) => {
     setHeaderColor(color.hex);
