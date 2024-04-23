@@ -15,10 +15,12 @@ function App() {
     toast.info('Are you still with us?');
   }, []);
 
-  const idleTimer = useIdleTimer({
+  const timer = useIdleTimer({
     timeout: 5000,
     onIdle: handleOnIdle,
   });
+
+  console.log(timer);
 
   const handleChangeColor = (color) => {
     setHeaderColor(color.hex);
